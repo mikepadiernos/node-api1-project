@@ -2,6 +2,7 @@ dependencies:
   cors: 2.8.5
   express: 4.17.1
   knex: 0.20.11_sqlite3@4.1.1
+  shortid: 2.2.15
   sqlite3: 4.1.1
 devDependencies:
   nodemon: 2.0.2
@@ -1646,6 +1647,10 @@ packages:
     dev: false
     resolution:
       integrity: sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
+  /nanoid/2.1.11:
+    dev: false
+    resolution:
+      integrity: sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==
   /nanomatch/1.2.13:
     dependencies:
       arr-diff: 4.0.0
@@ -2272,6 +2277,12 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=
+  /shortid/2.2.15:
+    dependencies:
+      nanoid: 2.1.11
+    dev: false
+    resolution:
+      integrity: sha512-5EaCy2mx2Jgc/Fdn9uuDuNIIfWBpzY4XIlhoqtXF6qsf+/+SGZ+FxDdX/ZsMZiWupIWNqAEmiNY4RC+LSmCeOw==
   /signal-exit/3.0.2:
     resolution:
       integrity: sha1-tf3AjxKH6hF4Yo5BXiUTK3NkbG0=
@@ -2742,4 +2753,5 @@ specifiers:
   express: ^4.17.1
   knex: ^0.20.7
   nodemon: ^2.0.2
+  shortid: ^2.2.15
   sqlite3: ^4.1.1
