@@ -20,20 +20,20 @@ server.get('/', (request, response) => {
 
 // HANDLER, POST - "/api/users"
 server.post('/api/users', (request, response) => {
-	const user = request.body;
-	console.log("Users Info: ", user);
+	const info = request.body;
+	console.log("Users Info: ", info);
 
-	db.insert(user)
+	db.insert(info)
 		.then(user => {
-			user.name && user.bio ? (
+			info.name && info.bio ? (
 			response.status(201).json({success: true, user})
 			) : (
 				response.status(400).json({success: false, message: 'Please, provide name & bio.'})
 			)
+		})
 		.catch(error => {
 			response.status(500).json({success: false, message: 'User not saved', error})
 		})
-	});
 });
 
 // HANDLER, GET - "/api/users"
@@ -64,17 +64,37 @@ server.get('/api/users/:id', (request, response) => {
 
 // HANDLER, DELETE - "/api/users/:id"
 server.delete('/api/users/:id', (request, response) => {
-	const { id } = request.params;
+	const {id} = request.params;
 
 	db.remove(id)
-		.then(userDelete => {
-			userDelete ? (
+		.then(user => {
+			user ? (
 				response.status(204).end()
 				) : (
-					response.status(404).json({ message: 'User not found' })
+					response.status(404).json({ success: false, message: 'User not found' })
 			)
 		})
 		.catch(error=> {
 			response.status(500).json({ success: false, message: 'User can not be removed', error });
+		});
+});
+
+// HANDLER, PUT - "/api/users/:id"
+server.put('/api/users/:id', (request, response) => {
+	const {id} = request.params;
+	const info = request.body;
+
+	db.update(id, user)
+		.then( user => {
+			console.log("User Update: ", user);
+			info.name && info.bio && user ? (
+				response.status(200).json({success: true, user})
+			) : (
+				response.status(404).json({success: false, message: 'User not found'})
+			);
+			console.log("Name: ", userInfo.name);
+		})
+		.catch(error=> {
+			response.status(500).json({ success: false, message: 'User can not be updated', error });
 		});
 });
