@@ -84,7 +84,7 @@ server.put('/api/users/:id', (request, response) => {
 	const {id} = request.params;
 	const info = request.body;
 
-	db.update(id, user)
+	db.update(id, info)
 		.then( user => {
 			console.log("User Update: ", user);
 			info.name && info.bio && user ? (
@@ -92,7 +92,7 @@ server.put('/api/users/:id', (request, response) => {
 			) : (
 				response.status(404).json({success: false, message: 'User not found'})
 			);
-			console.log("Name: ", userInfo.name);
+			console.log("Name: ", info.name);
 		})
 		.catch(error=> {
 			response.status(500).json({ success: false, message: 'User can not be updated', error });
